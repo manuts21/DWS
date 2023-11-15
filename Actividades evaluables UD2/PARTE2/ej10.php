@@ -1,4 +1,5 @@
 <?php
+// Definir variables
 $hoteles = [
     ["Nombre" => "Abashiri (NH)", "CAT" => "3*", "HAB" => 168, "Poblacion" => "46013 Valencia", "Direccion" => "Avenida Ausias March,59"],
     ["Nombre" => "Abba Acteon", "CAT" => "4*", "HAB" => "189", "Poblacion" => "46023 Valencia", "Direccion" => "Escultor Vicente Bertran Grimal, 2"], ["Nombre" => "Acta Atarazaans", "CAT" => "4*", "HAB" => "42", "Poblacion" => "46011 Valencia", "Direccion" => "Plaza Tribunal de las Aguas, 4"], ["Nombre" => "Acta del Carmen", "CAT" => "3*", "HAB" => "25", "Poblacion" => "46003 Valencia", "Direccion" => "Blanquerias 11"],
@@ -52,18 +53,20 @@ function borrarHotelPorNombre(&$hoteles, $nombreHotel)
 
 
 // Llamadas a funciones
+echo("<h1>Listado de hoteles</h1>");
 mostrarListadoHoteles($hoteles);
-echo ("<br><br>Hoteles de mas de 100 habitaciones<br>");
+echo ("<br><br><h1>Hoteles de mas de 100 habitaciones</h1><br>");
 mostrarHoteles100hab($hoteles);
-echo ("<br><br>Hoteles de menos de 100 habitaciones y exactamente tres estrellas<br>");
+echo ("<br><br><h1>Hoteles de menos de 100 habitaciones y exactamente tres estrellas</h1><br>");
 mostrarHoteles100hab3stars($hoteles);
-echo ("<br><br> Borrando el hotel Acta del Carmen<br>");
+echo ("<br><br> <h1>Borrando el hotel Acta del Carmen</h1><br>");
 borrarHotelPorNombre($hoteles, "Acta del Carmen");
 mostrarListadoHoteles($hoteles);
-echo ("<br><br>BORRANDO HOTELES<br>");
+echo ("<br><br><h1>BORRANDO HOTELES</h1><br>");
 $hoteles = [];
 mostrarListadoHoteles($hoteles);
 $hoteles = [["Nombre" => "Astoria Palace", "CAT" => "4*", "HAB" => "204", "Poblacion" => "46002 Valencia", "Direccion" => "Plaza Rodrigo Botet,5"], 
 ["Nombre" => "Balenario Las Arenas", "CAT" => "Lujo", "HAB" => "253", "Poblacion" => "46011 Valencia", "Direccion" => "Eugenia Viñes, 22-24"
 ]];
+echo ("<br><h1>Añadidos hoteles nuevos</h1>");
 mostrarListadoHoteles($hoteles);
