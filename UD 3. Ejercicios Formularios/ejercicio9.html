@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Alta de Usuario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Formulario de Alta de Usuario</h1>
+    <form action="ejercicio9b.php" method="POST" enctype="multipart/form-data">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+        
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="usuario">Nombre de Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required><br><br>
+        
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <label for="confirm_password">Confirmar Contraseña:</label>
+        <input type="password" id="confirm_password" name="confirm_password" required><br><br>
+        
+        <label for="check1">Bloqueado departamento</label>
+            <input type="checkbox" id="check1" name="check1"> Opción 1
+            <input type="checkbox" id="check2" name="check2"> Opción 2
+        <br><br>
+        
+        <label for="foto">Foto:</label>
+        <input type="file" id="foto" name="foto" accept="image/*" required><br><br>
+        
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
+

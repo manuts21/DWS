@@ -1,0 +1,27 @@
+<!-- FILEPATH: ejercicio8a.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Validación de datos</title>
+</head>
+<body>
+    <h1>Validación de datos</h1>
+    <form action="ejercicio8b.php" method="POST">
+        <label for="texto">Texto:</label>
+        <input type="text" id="texto" name="texto" required><br><br>
+        
+        <label for="filtro">Selecciona el tipo de filtro:</label><br>
+        <input type="radio" id="email" name="filtro" value="email" required>
+        <label for="email">Email</label><br>
+        
+        <input type="radio" id="numeros" name="filtro" value="numeros">
+        <label for="numeros">Números</label><br>
+        
+        <input type="radio" id="nif" name="filtro" value="nif">
+        <label for="nif">NIF</label><br>
+        
+        <input type="submit" value="Validar">
+    </form>
+</body>
+</html>
