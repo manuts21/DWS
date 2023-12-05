@@ -4,44 +4,53 @@ class Trabajador {
     protected $nombre;
     protected $sueldo;
 
-    public function __construct($nombre) {
+    public function __construct($nombre, $sueldo) {
         $this->nombre = $nombre;
+        $this->sueldo = $sueldo;
     }
 
     public function calcularSueldo() {
-        // Este método se implementará en las clases derivadas
-        // ya que el cálculo depende del tipo de trabajador.
+        return $this->sueldo;
+    }
+
+    public function getNombre() {
+        return $this->nombre;
     }
 }
 
 class Empleado extends Trabajador {
-    public function calcularSueldo($horasTrabajadas) {
-        $this->sueldo = 9.50 * $horasTrabajadas;
-        return $this->sueldo;
+    private $horasTrabajadas;
+
+    public function __construct($nombre, $sueldo, $horasTrabajadas) {
+        parent::__construct($nombre, $sueldo);
+        $this->horasTrabajadas = $horasTrabajadas;
+    }
+
+    public function calcularSueldo() {
+        $tarifaPorHora = 9.50;
+        return $tarifaPorHora * $this->horasTrabajadas;
     }
 }
 
 class Gerente extends Trabajador {
-    private $sueldoBase = 2500;
-    private $porcentajeBeneficio;
+    private $beneficioEmpresa;
 
-    public function __construct($nombre, $porcentajeBeneficio) {
-        parent::__construct($nombre);
-        $this->porcentajeBeneficio = $porcentajeBeneficio;
+    public function __construct($nombre, $sueldoBase, $beneficioEmpresa) {
+        parent::__construct($nombre, $sueldoBase);
+        $this->beneficioEmpresa = $beneficioEmpresa;
     }
 
-    public function calcularSueldo($beneficioEmpresa) {
-        $this->sueldo = $this->sueldoBase + ($beneficioEmpresa * $this->porcentajeBeneficio / 100);
-        return $this->sueldo;
+    public function calcularSueldo() {
+        $porcentajeBeneficio = 0.05;
+        return $this->sueldo + ($this->beneficioEmpresa * $porcentajeBeneficio);
     }
 }
 
-$empleado = new Empleado("Juan");
-$sueldoEmpleado = $empleado->calcularSueldo(40);
-echo "Sueldo de {$empleado->nombre}: $sueldoEmpleado\n";
+// Ejemplo de uso
+$empleado = new Empleado("Juan", 0, 40);
+$gerente = new Gerente("Ana", 2500, 50000);
 
-$gerente = new Gerente("Ana", 5);
-$sueldoGerente = $gerente->calcularSueldo(50000);
-echo "Sueldo de {$gerente->nombre}: $sueldoGerente\n";
+echo "Sueldo de ".$empleado->getNombre().": ".$empleado->calcularSueldo()." euros\n";
+echo "Sueldo de ".$gerente->getNombre().": ".$gerente->calcularSueldo()." euros\n";
 
 ?>
