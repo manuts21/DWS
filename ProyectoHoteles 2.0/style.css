@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #000;
+    overflow: hidden;
+    font-family: monospace;
+    font-size: 1.25rem;
+    color: #fff;
+    padding: 1rem;
+}
+
+#imgdiv {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#imgdiv img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    margin: 0.25rem 0;
+    padding: 2px;
+}
+
+a.underline-hover-effect {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.underline-hover-effect::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; 
+    width: 0;
+    height: 5px; 
+    background-color: rgb(255, 255, 255);
+    transition: width 0.25s ease-out;
+}
+
+.underline-hover-effect:hover::before {
+    width: 100%;
+}
