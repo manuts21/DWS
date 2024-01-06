@@ -14,18 +14,10 @@ if ($conn->connect_error) {
 }
 
 // Lógica para procesar el formulario de añadir hoteles
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadirHoteles"])) {
-    $nombreHotel = $_POST["nombreHotel"] ?? "";
-    $categoria = $_POST["categoria"] ?? "";
-    $habitaciones = $_POST["habitaciones"] ?? "";
-    $poblacion = $_POST["poblacion"] ?? "";
-    $direccion = $_POST["direccion"] ?? "";
-
-    $rating = $_POST["rating"] ?? "";
-
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["borrarHoteles"])) {
+    $idHotel = $_POST["idHotel"] ?? "";
     // Consulta SQL para insertar datos en la base de datos
-    $sql = "INSERT INTO hoteles (Nombre, CAT, HAB, Poblacion, Direccion) 
-            VALUES ('$nombreHotel', '$categoria', '$habitaciones', '$poblacion', '$direccion')";
+    $sql = "DELETE FROM hoteles WHERE id = $idHotel"; 
 
     if ($conn->query($sql) === TRUE) {
         header("Location: index.php");
@@ -143,37 +135,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadirHoteles"])) {
 <body>
     <!-- Formulario para añadir hoteles -->
     <div id="formdiv">
-        <h1>Añadir hoteles</h1>
-        <form method="post" action="anadirhoteles.php">
-            <label for="nombreHotel">Nombre del Hotel:</label>
-            <input type="text" id="nombreHotel" name="nombreHotel" required>
-
-            <!-- Reemplaza la categoría con el rating -->
-            <label for="rating">Categoría (Star Rating):</label>
-            <div class="rate">
-                <input type="radio" id="star5" name="rating" value="5" />
-                <label for="star5" title="text">5 stars</label>
-                <input type="radio" id="star4" name="rating" value="4" />
-                <label for="star4" title="text">4 stars</label>
-                <input type="radio" id="star3" name="rating" value="3" />
-                <label for="star3" title="text">3 stars</label>
-                <input type="radio" id="star2" name="rating" value="2" />
-                <label for="star2" title="text">2 stars</label>
-                <input type="radio" id="star1" name="rating" value="1" />
-                <label for="star1" title="text">1 star</label>
-            </div>
-            <br><br>
-
-            <label for="habitaciones">Número de Habitaciones:</label>
-            <input type="number" id="habitaciones" name="habitaciones" required>
-
-            <label for="poblacion">Población:</label>
-            <input type="text" id="poblacion" name="poblacion" required>
-
-            <label for="direccion">Dirección:</label>
-            <input type="text" id="direccion" name="direccion" required>
-
-            <button type="submit" name="anadirHoteles" class="underline-hover-effect">Añadir Hotel</button>
+        <form method="post" action="borrarhotel.php">
+            <label for="idHotel">ID del hotel:</label>
+            <input type="text" id="idHotel" name="idHotel" required>
+        
+            <button type="submit" name="borrarHoteles" class="underline-hover-effect">Borrar Hotel</button>
         </form>
     </div>
 </body>

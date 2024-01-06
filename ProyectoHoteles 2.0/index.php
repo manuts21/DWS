@@ -2,7 +2,7 @@
 // Configuración de la base de datos
 $host = "localhost";
 $user = "root";
-$password = "";
+$password = "root";
 $database = "hoteles";
 
 // Conexión a la base de datos
@@ -39,11 +39,22 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["verHoteles"])) {
         exit;
     }
 }
-
+// Restaurar BBDD
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["restaurarBBDD"])) {
+     // Nombre del archivo SQL con las instrucciones de restauración
+     $sqlRestoreFile = "hoteles.sql";
+     // Leemos el contenido del archivo SQL
+     $sqlContent = file_get_contents($sqlRestoreFile);
+     $sqlQueries = explode(';', $sqlContent);
+     foreach ($sqlQueries as $sqlQuery) {
+        $sqlQuery = trim($sqlQuery);
+        $conn->query($sqlQuery);
+     }
+}
 // Añadir Hoteles
 elseif ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["anadirHoteles"])) {
     $formPage = "anadirhoteles.php";
-    // Redirige a la página de añadir hoteles (anadirhoteles.php)
+    
     header("Location: $formPage");
     exit;
 }
@@ -70,6 +81,9 @@ elseif ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["anadirHoteles"])) {
         <ul>
             <li><a href="?verHoteles=1" class="underline-hover-effect">Ver Hoteles</a></li>
             <li><a href="anadirhoteles.php" class="underline-hover-effect">Añadir Hoteles</a></li>
+            <li><a href="modificarhotel.php" class="underline-hover-effect">Modificar Hoteles</a></li>
+            <li><a href="borrarhotel.php" class="underline-hover-effect">Borrar Hoteles</a></li>
+            <li><a href="?restaurarBBDD=1" class="underline-hover-effect">Restaurar BBDD</a></li>
         </ul>
     </div>
 </body>

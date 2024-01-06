@@ -22,10 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadirHoteles"])) {
     $direccion = $_POST["direccion"] ?? "";
 
     $rating = $_POST["rating"] ?? "";
-
+    $idHotel = $_POST["idHotel"];
     // Consulta SQL para insertar datos en la base de datos
-    $sql = "INSERT INTO hoteles (Nombre, CAT, HAB, Poblacion, Direccion) 
-            VALUES ('$nombreHotel', '$categoria', '$habitaciones', '$poblacion', '$direccion')";
+    $sql = "UPDATE hoteles 
+            SET Nombre='$nombreHotel', CAT='$categoria', HAB='$habitaciones', Poblacion='$poblacion', Direccion='$direccion'
+            WHERE id=$idHotel";
 
     if ($conn->query($sql) === TRUE) {
         header("Location: index.php");
@@ -143,8 +144,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["anadirHoteles"])) {
 <body>
     <!-- Formulario para añadir hoteles -->
     <div id="formdiv">
-        <h1>Añadir hoteles</h1>
-        <form method="post" action="anadirhoteles.php">
+        <h1>Modificar hoteles</h1>
+        <form method="post" action="modificarhotel.php">
+            <label for="idHotel">ID del hotel</label>
+            <input type="text" id="idHotel" name="idHotel" required>
             <label for="nombreHotel">Nombre del Hotel:</label>
             <input type="text" id="nombreHotel" name="nombreHotel" required>
 
