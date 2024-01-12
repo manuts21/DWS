@@ -1,0 +1,79 @@
+/* Reset de estilos para evitar problemas de compatibilidad entre navegadores */
+body, h1, h2, p, button, a {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo general de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; 
+    color: #fff; 
+}
+
+/* Estilo del aviso de cookies */
+#aviso-cookies {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #111; 
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+}
+
+#aviso-cookies p {
+    margin-bottom: 10px;
+}
+
+#aviso-cookies button {
+    background-color: #3e4095; 
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+#aviso-cookies button:hover {
+    background-color: #2a2c6d; 
+}
+
+#aviso-cookies a {
+    color: #9f9fa0; 
+    text-decoration: none;
+}
+
+#aviso-cookies a:hover {
+    text-decoration: underline; 
+}
+.confirmacion-cookies {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.confirmacion-cookies:hover {
+    opacity: 0.9;
+}
+
+.confirmacion-cookies button {
+    background-color: #fff;
+    color: #4CAF50;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.confirmacion-cookies button:hover {
+    text-decoration: underline;
+}
