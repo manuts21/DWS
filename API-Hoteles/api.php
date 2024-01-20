@@ -13,8 +13,9 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
+
 // GET: Devuelve el listado de hoteles
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && !isset($_GET['id'])) {
     $result = $conn->query("SELECT * FROM hoteles");
     $hoteles = array();
 
@@ -24,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
     echo json_encode(["hoteles" => $hoteles]);
 }
-
 // GET con ID: Devuelve solo un hotel en concreto.
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         echo json_encode(["mensaje" => "Hotel no encontrado"]);
     }
 }
-
 // POST: Inserta un hotel
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents("php://input"), true);
@@ -48,18 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $direccion = $data['direccion'];
 
     $sql = "INSERT INTO hoteles (Nombre, CAT, HAB, Poblacion, Direccion) 
-            VALUES ('$nombre', '$cat', '$hab', '$poblacion', '$direccion')";
-
+            VALUES ('$nombre', '$cat', $hab, '$poblacion', '$direccion')";
+    
     if ($conn->query($sql) === TRUE) {
         echo json_encode(["mensaje" => "Hotel agregado correctamente"]);
     } else {
         echo json_encode(["mensaje" => "Error al agregar el hotel: " . $conn->error]);
     }
 }
-
 // PUT: Modifica un hotel
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-    parse_str(file_get_contents("php://input"), $data);
+    $data = json_decode(file_get_contents("php://input"), true);
     $id = $data['id'];
     $nombre = $data['nombre'];
     $cat = $data['cat'];
